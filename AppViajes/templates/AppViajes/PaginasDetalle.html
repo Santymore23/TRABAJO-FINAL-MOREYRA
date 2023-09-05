@@ -1,0 +1,12 @@
+{% extends "AppViajes/inicio.html" %}
+
+{% load static %}
+
+{% block titulo %} PAGINAS {% endblock %}
+
+{% block contenido_dinamico %}
+<h3> PAGINAS </h3>
+<p>PAGINA: <i>{{pagina.Pagina}}</i></p>
+<p>MOTIVOS: <i>{{pagina.Motivo}}</i></p>
+<p>LINK: <i>{{pagina.Link}}</i></p>
+{% endblock %}

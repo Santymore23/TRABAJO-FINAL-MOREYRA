@@ -1,0 +1,16 @@
+{% extends "AppViajes/inicio.html" %}
+
+{% load static %}
+
+{% block titulo %} FORMULARIO CONTACTOS {% endblock %}
+
+{% block contenido_dinamico %}
+<h3> CONTACTOS </h3>
+<form method = "POST"> {% csrf_token %}
+    Estas Seguro(a) que deseas borrar el contacto {{ contacto.Nombre }}???
+
+
+    <input type="submit" value="SI">
+
+</form>
+{% endblock %}

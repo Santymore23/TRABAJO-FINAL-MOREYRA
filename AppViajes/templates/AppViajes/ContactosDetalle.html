@@ -1,0 +1,14 @@
+{% extends "AppViajes/inicio.html" %}
+
+{% load static %}
+
+{% block titulo %} DATOS DE CONTACTOS {% endblock %}
+
+{% block contenido_dinamico %}
+<h3> CONTACTOS </h3>
+<p>NOMBRE: <i>{{contacto.Nombre}}</i></p>
+<p>APELLIDO: <i>{{contacto.Apellido}}</i></p>
+<p>MAIL DE CONTACTO: <i>{{contacto.Email}}</i></p>
+<p>TELEFONO: <i>{{contacto.Telefono}}</i></p>
+
+{% endblock %}

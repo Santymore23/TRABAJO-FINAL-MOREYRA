@@ -1,0 +1,16 @@
+{% extends "AppViajes/inicio.html" %}
+
+{% load static %}
+
+{% block titulo %} FORMULARIO DESTINOS {% endblock %}
+
+{% block contenido_dinamico %}
+<h3> DESTINOS </h3>
+<form method = "POST"> {% csrf_token %}
+    Estas Seguro(a) que deseas borrar el destino {{ destino.Destino }}???
+
+
+    <input type="submit" value="SI">
+
+</form>
+{% endblock %}

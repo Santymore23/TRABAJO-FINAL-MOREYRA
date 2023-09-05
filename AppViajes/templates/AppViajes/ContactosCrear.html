@@ -1,0 +1,18 @@
+{% extends "AppViajes/inicio.html" %}
+
+{% load static %}
+
+{% block titulo %} FORMULARIO CONTACTOS {% endblock %}
+
+{% block contenido_dinamico %}
+<h3> CONTACTOS </h3>
+<form method = "POST"> {% csrf_token %}
+    <table>
+    {{ form.as_p }}
+    </table>
+
+
+    <input type="submit" value="GUARDAR CONTACTO">
+
+</form>
+{% endblock %}

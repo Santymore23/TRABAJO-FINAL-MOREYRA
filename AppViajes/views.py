@@ -2,6 +2,8 @@ from django.shortcuts import render
 from AppViajes.models import *
 from django.http import HttpResponse
 from AppViajes.forms import *
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 # Create your views here.
 
 def inicio (request):
@@ -10,53 +12,35 @@ def inicio (request):
 def Acerca_de_mi (request):
     return render (request,"AppViajes/AcercaDeMi.html",{})
 
-def destinos (request):
-    if request.method == "POST":
-        formulario = DestinosForm (request.POST)
-        if formulario.is_valid():
-            info = formulario.cleaned_data
-            lugar = info["Destino"]
-            atraccion = info ["Atraccion_principal"]
-            destino = Destinos(Destino = lugar, Atraccion_principal = atraccion)
-            destino.save()
-            mensaje = "Destino Cargado"
-        else:
-            mensaje = "Destino no cargado"
-        viajes = Destinos.objects.all()
-        formulario_destino = DestinosForm()
-        return render (request,"AppViajes/destinos.html",{"formulario":formulario_destino, "mensaje": mensaje, "destinos": viajes})
-    else:
-        viajes = Destinos.objects.all()
-        formulario_destino = DestinosForm()
-        return render (request,"Appviajes/destinos.html",{"formulario": formulario_destino, "destinos": viajes})
 
-def eliminarDestino(request, id):
-    destino = Destinos.objects.get(id = id)
-    destino.delete()
-    viajes = Destinos.objects.all()
-    formulario_destino = DestinosForm()
-    mensaje = "Destino eliminado"
-    return render (request,"AppViajes/destinos.html",{"formulario":formulario_destino, "mensaje": mensaje, "destinos": viajes})
+          #DESTINOS
+class DestinoList(ListView):
+    context_object_name = "destino"
+    queryset = Destinos.objects.all()
+    template_name = "AppViajes/DestinosList.html"
 
-def editarDestino (request, id):
-    destino = Destinos.objects.get(id = id)
-    if request.method == "POST":
-         formulario = DestinosForm (request.POST)
-         if formulario.is_valid():
-            info = formulario.cleaned_data
-            destino.lugar = info["Destino"]
-            destino.atraccion = info ["Atraccion_principal"]
-            destino.save()
-            mensaje = "Destino editado"
-            nuevo = Destinos.objects.all()
-            formulario_destino = DestinosForm()
-            return render (request,"AppViajes/editarDestino.html",{"formulario":formulario_destino, "mensaje": mensaje, "destino": nuevo})
-            
-    else:
-        formulario_destino = DestinosForm(initial={"Destino": destino.Destino, "Atraccion_principal": destino.Atraccion_principal})    
-        return render (request, "Appviajes/destinos.html",{"formulario": formulario_destino, "destino": destino})
+class DestinoCrear(CreateView):
+    model = Destinos
+    success_url = reverse_lazy("destinos_list")
+    fields = ['Destino','Atraccion_principal','Descripcion']
+    template_name = "AppViajes/DestinosCrear.html"
 
+class DestinoDetalle (DetailView):
+    model = Destinos
+    context_object_name = "destino"
+    template_name = "AppViajes/DestinosDetalle.html"
     
+class DestinoBorrar (DeleteView):
+    model = Destinos
+    success_url = reverse_lazy("destinos_list")
+    context_object_name = "destino"
+    template_name = "AppViajes/DestinosBorrar.html"
+    
+    
+
+
+
+        #CONSEJOS    
 def consejos (request):
     if request.method == "POST":
         formulario = ConsejosForm (request.POST)
@@ -74,41 +58,47 @@ def consejos (request):
     else:
         formulario_consejo = ConsejosForm()
         return render (request,"AppViajes/Consejos.html",{"formulario":formulario_consejo})
+    
+    
+    
+        #CONTACTOS
 
-def contactos (request):
-    if request.method == "POST":
-        formulario = ContactosForm (request.POST)
-        if formulario.is_valid():
-            info = formulario.cleaned_data
-            nombre = info["Nombre"]
-            apellido = info ["Apellido"]
-            email = info ["Email"]
-            telefono = info ["Telefono"]
-            contacto = Contactos(Nombre = nombre, Apellido = apellido, Email = email, Telefono = telefono)
-            contacto.save()
-            mensaje = "Contacto creado"
-        else:
-            mensaje = "El contacto no fue cargado"
-        formulario_contactos= ContactosForm()
-        return render (request,"AppViajes/Contactos.html",{"mensaje":mensaje})
-    else:
-        formulario_contactos = ContactosForm()
-        return render (request,"AppViajes/Contactos.html",{"formulario":formulario_contactos})
+class ContactosList(ListView):
+    context_object_name = "contactos"
+    queryset = Contactos.objects.all()
+    template_name = "AppViajes/ContactosList.html"
 
-def paginas_web(request):
-    if request.method == "POST":
-        formulario = PaginasForm (request.POST)
-        if formulario.is_valid():
-            info = formulario.cleaned_data
-            pagina = info["Pagina"]
-            motivo = info ["Motivo"]
-            pagina_web = Paginas_web(Pagina = pagina, Motivo = motivo)
-            pagina_web.save()
-            return render (request,"AppViajes/Paginas_web.html",{"mensaje":"Pagina cargada"})
-        return render (request,"AppViajes/Paginas_web.html",{"mensaje":"La pagina no fue cargada"})
-    else:
-        formulario_paginas= PaginasForm()
-        return render (request,"AppViajes/Paginas_web.html",{"formulario":formulario_paginas})
+class ContactosCrear(CreateView):
+    model = Contactos
+    success_url = reverse_lazy("contactos_list")
+    fields = ['Nombre','Apellido','Email','Telefono']
+    template_name = "AppViajes/ContactosCrear.html"
+
+class ContactosDetalle(DetailView):
+    model = Contactos
+    context_object_name = "contacto"
+    template_name = "AppViajes/ContactosDetalle.html"
+
+class ContactosBorrar(DeleteView):
+    model = Contactos 
+    success_url = reverse_lazy("contactos_list")
+    context_object_name = "contacto"
+    template_name = "AppViajes/ContactosBorrar.html"
+    
+    
+    
+    
+            #PAGINAS WEB
+class PaginasList(ListView):
+    context_object_name = "pagina"
+    queryset = Paginas_web.objects.all()
+    template_name = "AppViajes/PaginasList.html" 
+
+class PaginasCrear(CreateView):
+    model = Paginas_web
+    success_url = reverse_lazy("paginas_list")
+    fields = ['Pagina','Motivo', 'Link']
+    template_name = "AppViajes/PaginasCrear.html"
 
 
 

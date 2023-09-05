@@ -1,0 +1,30 @@
+{% extends "AppViajes/inicio.html" %}
+
+{% load static %}
+
+{% block titulo %} DESTINOS {% endblock %}
+
+{% block contenido_dinamico %}
+<h3> DESTINOS </h3>
+<ul>
+
+    {% for destino in destino %}
+    <li>
+
+        {{ destino.Destino }}
+        <a class="btn btn-success" href="{% url 'destinos_detalles' destino.id %}">EDITAR</a>
+        <a class="btn btn-danger" href="{% url 'destinos_borrar' destino.id %}">ELIMINAR</a>
+
+
+    </li>
+
+
+    {% endfor %}
+    <br>
+    <br>
+    <a class="btn btn-success" href="{% url 'destinos_crear' %}">CREAR DESTINO</a>
+
+
+
+</ul>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "AppViajes/inicio.html" %}
+
+{% load static %}
+
+{% block titulo %} FORMULARIO PAGINAS {% endblock %}
+
+{% block contenido_dinamico %}
+<h3> PAGINAS </h3>
+<form method = "POST"> {% csrf_token %}
+    <table>
+    {{ form.as_p }}
+    </table>
+
+
+    <input type="submit" value="GUARDAR PAGINA">
+
+</form>
+{% endblock %}

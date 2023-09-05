@@ -1,0 +1,12 @@
+{% extends "AppViajes/inicio.html" %}
+
+{% load static %}
+
+{% block titulo %} DESCRIPCION DE DESTINOS {% endblock %}
+
+{% block contenido_dinamico %}
+<h3> DESTINOS </h3>
+<p>DESTINO: <i>{{destino.Destino}}</i></p>
+<p>ATRACCION PRINCIPAL: <i>{{destino.Atraccion_principal}}</i></p>
+<p>DESCRIPCION: <i>{{destino.Descripcion}}</i></p>
+{% endblock %}

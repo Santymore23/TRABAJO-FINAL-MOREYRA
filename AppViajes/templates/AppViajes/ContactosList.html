@@ -1,0 +1,31 @@
+{% extends "AppViajes/inicio.html" %}
+
+{% load static %}
+
+{% block titulo %} CONTACTOS INDEPENDIENTES PARA PLANIFICACIONES DE VIAJES {% endblock %}
+
+{% block contenido_dinamico %}
+<h3> CONTACTOS </h3>
+<ul>
+
+    {% for contacto in contactos %}
+    <li>
+
+        {{ contacto.Nombre }}
+        <a class="btn btn-success" href="{% url 'contactos_detalles' contacto.id %}">EDITAR</a>
+        <a class="btn btn-danger" href="{% url 'contactos_borrar' contacto.id %}">ELIMINAR</a> 
+
+
+
+    </li>
+
+
+    {% endfor %}
+    <br>
+    <br>
+    <a class="btn btn-success" href="{% url 'contactos_crear' %}">CREAR CONTACTO</a>
+
+
+
+</ul>
+{% endblock %}
