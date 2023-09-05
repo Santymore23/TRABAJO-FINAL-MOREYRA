@@ -1,0 +1,19 @@
+{% extends "AppViajes/inicio.html" %}
+
+{% load static %}
+
+{% block titulo %} PAGINAS QUE TE PUEDEN SERVIR PARA PLANIFICAR VIAJES {% endblock %}
+
+{% block contenido_dinamico %}
+<h3> PAGINAS WEB</h3>
+<form action = "{% url 'paginas_web' %}" method = "POST"> {% csrf_token %}
+
+    {{ formulario.as_p }}
+
+
+    <input type="submit" value="GUARDAR PAGINA">
+
+</form>
+
+<h3>{{ mensaje }}</h3>
+{% endblock %}

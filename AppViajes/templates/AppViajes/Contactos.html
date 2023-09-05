@@ -1,0 +1,19 @@
+{% extends "AppViajes/inicio.html" %}
+
+{% load static %}
+
+{% block titulo %} CONTACTOS INDEPENDIENTES PARA PLANIFICACIONES DE VIAJES {% endblock %}
+
+{% block contenido_dinamico %}
+<h3> CONTACTOS </h3>
+<form action = "{% url 'contactos' %}" method = "POST"> {% csrf_token %}
+
+    {{ formulario.as_p }}
+
+
+    <input type="submit" value="GUARDAR CONTACTO">
+
+</form>
+
+<h3>{{ mensaje }}</h3>
+{% endblock %}

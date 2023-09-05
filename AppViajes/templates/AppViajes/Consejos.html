@@ -1,0 +1,18 @@
+{% extends "AppViajes/inicio.html" %}
+
+{% load static %}
+
+{% block titulo %} MIS CONSEJOS {% endblock %}
+
+{% block contenido_dinamico %}
+<h3> CONSEJOS </h3>
+<form action = "{% url 'consejos' %}" method = "POST"> {% csrf_token %}
+
+    {{ formulario.as_p }}
+
+
+    <input type="submit" value="GUARDAR CONSEJO">
+
+</form>
+<h3>{{ mensaje }}</h3>
+{% endblock %}
