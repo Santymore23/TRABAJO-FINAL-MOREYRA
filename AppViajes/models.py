@@ -5,6 +5,7 @@ class Destinos (models.Model):
     Destino = models.CharField(max_length=100)
     Atraccion_principal = models.CharField(max_length=1000)
     Descripcion = models.CharField(max_length=20000, null = True)
+    Imagen = models.ImageField(upload_to='destino_images/', null= True, blank= True)
     def __str__(self) -> str:
         return f"{self.Destino} -- {self.Atraccion_principal} -- {self.Descripcion} "
 

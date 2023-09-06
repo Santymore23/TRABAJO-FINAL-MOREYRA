@@ -24,7 +24,7 @@ class DestinoList(ListView):
 class DestinoCrear(CreateView):
     model = Destinos
     success_url = reverse_lazy("destinos_list")
-    fields = ['Destino','Atraccion_principal','Descripcion']
+    fields = ['Destino','Atraccion_principal','Descripcion', 'Imagen']
     template_name = "AppViajes/DestinosCrear.html"
 
 class DestinoDetalle (DetailView):

@@ -10,3 +10,43 @@
 <p>ATRACCION PRINCIPAL: <i>{{destino.Atraccion_principal}}</i></p>
 <p>DESCRIPCION: <i>{{destino.Descripcion}}</i></p>
 {% endblock %}
+
+{% block header %}
+    {% if destino.Imagen %}
+    <header class="masthead">
+    style = "background:
+    url({{destino.Imagen.url}}) no-repeat center center;">
+            <div class="container position-relative">
+                <div class="row justify-content-center">
+                    <div class="col-xl-6">
+                        <div class="text-center text-white">
+                            <!-- Page heading-->
+                            <!-- Signup form-->
+                            <h1 class="mb-5"> DESCRIPCION DE DESTINOS </h1>
+                            <!-- * * * * * * * * * * * * * * *-->
+                            <!-- * * SB Forms Contact Form * *-->
+                            <!-- * * * * * * * * * * * * * * *-->
+                            <!-- This form is pre-integrated with SB Forms.-->
+                            <!-- To make this form functional, sign up at-->
+                            <!-- https://startbootstrap.com/solution/contact-forms-->
+                            <!-- to get an API token!-->
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        {% else %}
+        <header class="masthead">
+            <div class="container position-relative">
+                <div class="row justify-content-center">
+                    <div class="col-xl-6">
+                        <div class="text-center text-white">
+                            <h1 class="mb-5">NO HAY IMAGEN PARA ESTE DESTINO</h1>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        {% endif %}
+{% endblock %}
