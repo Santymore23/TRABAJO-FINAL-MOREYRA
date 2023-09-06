@@ -22,7 +22,7 @@
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
                 <a class="navbar-brand" href="{% url 'inicio' %}">VIAJES</a>
-                <a class="btn btn-primary" href="{% url 'consejos' %}">CONSEJOS</a>
+                <a class="btn btn-primary" href="{% url 'consejos_list' %}">CONSEJOS</a>
                 <a class="btn btn-primary" href="{% url 'destinos_list' %}">DESTINOS</a>
                 <a class="btn btn-primary" href="{% url 'Acerca_de_mi' %}">ACERCA DE MI</a>
                 <a class="btn btn-primary" href="{% url 'contactos_list' %}">CONTACTOS</a>
@@ -52,7 +52,7 @@
             </div>
         </header>
         {% block contenido_dinamico %}
-
+        <a class="btn btn-primary" href="{% url 'registro' %}">REGISTRO</a>
         {% endblock %}
         <!-- Icons Grid-->
        

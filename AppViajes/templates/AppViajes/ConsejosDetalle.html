@@ -1,0 +1,14 @@
+{% extends "AppViajes/inicio.html" %}
+
+{% load static %}
+
+{% block titulo %} CONSEJOS {% endblock %}
+
+{% block contenido_dinamico %}
+<h3> CONSEJOS </h3>
+<p>DESTINO: <i>{{consejo.Destino}}</i></p>
+<p>INFORMACION COMIDAS: <i>{{consejo.Comida}}</i></p>
+<p>INFORMACION HOTELES: <i>{{consejo.Hoteles}}</i></p>
+<p>INFORMACION TRANSPORTE: <i>{{consejo.Transporte}}</i></p>
+<p>INFORMACION EXTRA: <i>{{consejo.Tips_generales}}</i></p>
+{% endblock %}

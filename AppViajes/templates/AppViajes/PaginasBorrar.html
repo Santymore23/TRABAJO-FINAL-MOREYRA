@@ -1,0 +1,16 @@
+{% extends "AppViajes/inicio.html" %}
+
+{% load static %}
+
+{% block titulo %} FORMULARIO PAGINAS {% endblock %}
+
+{% block contenido_dinamico %}
+<h3> PAGINAS </h3>
+<form method = "POST"> {% csrf_token %}
+    Estas Seguro(a) que deseas borrar la pagina {{ pagina.Pagina }}???
+
+
+    <input type="submit" value="SI">
+
+</form>
+{% endblock %}

@@ -1,5 +1,6 @@
 from django import forms
-
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 
 class DestinosForm (forms.Form):
@@ -22,6 +23,19 @@ class ContactosForm (forms.Form):
     Apellido = forms.CharField (max_length=100)
     Email = forms.EmailField(max_length=100)
     Telefono = forms.IntegerField ()
+
+class RegistroUsuarioForm (forms.Form):
+    Username =forms.CharField (max_length=20, label="Ingresar nombre de usuario")
+    Email = forms.EmailField(label="Ingresar email")
+    Password1 = forms.CharField(label="Contraseña",widget=forms.PasswordInput)
+    Password2 = forms.CharField(label=" Reingresar contraseña",widget=forms.PasswordInput)
+    
+    class Meta:
+        model = User
+        fields = ['Username', 'Email', 'Password1', 'Password2']
+        help_texts ={k:"" for k in fields}
+    
+    
     
     
 

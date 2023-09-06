@@ -2,17 +2,17 @@
 
 {% load static %}
 
-{% block titulo %} MIS CONSEJOS {% endblock %}
+{% block titulo %} FORMULARIO CONSEJOS {% endblock %}
 
 {% block contenido_dinamico %}
 <h3> CONSEJOS </h3>
-<form action = "{% url 'consejos' %}" method = "POST"> {% csrf_token %}
-
-    {{ formulario.as_p }}
+<form method = "POST"> {% csrf_token %}
+    <table>
+    {{ form.as_p }}
+    </table>
 
 
     <input type="submit" value="GUARDAR CONSEJO">
 
 </form>
-<h3>{{ mensaje }}</h3>
 {% endblock %}

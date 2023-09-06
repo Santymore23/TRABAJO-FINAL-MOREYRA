@@ -1,0 +1,34 @@
+{% extends "AppViajes/inicio.html" %}
+
+{% load static %}
+
+{% block titulo %} CONSEJOS {% endblock %}
+
+{% block contenido_dinamico %}
+<h3> CONSEJOS </h3>
+<ul>
+
+    {% for consejo in consejo %}
+    <li>
+
+        {{ consejo.Destino }}
+        <a class="btn btn-info" href="{% url 'consejos_detalles' consejo.id %}">MOSTRAR</a>
+        <a class="btn btn-danger" href="{% url 'consejos_borrar' consejo.id %}">ELIMINAR</a>
+
+        
+
+
+
+
+    </li>
+
+
+    {% endfor %}
+    <br>
+    <br>
+    <a class="btn btn-success" href="{% url 'consejos_crear' %}">CREAR CONSEJO</a>
+
+
+
+</ul>
+{% endblock %}

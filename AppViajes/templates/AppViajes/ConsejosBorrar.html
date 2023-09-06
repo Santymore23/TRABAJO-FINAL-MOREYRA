@@ -1,0 +1,16 @@
+{% extends "AppViajes/inicio.html" %}
+
+{% load static %}
+
+{% block titulo %} FORMULARIO CONSEJOS {% endblock %}
+
+{% block contenido_dinamico %}
+<h3> CONSEJOS </h3>
+<form method = "POST"> {% csrf_token %}
+    Estas Seguro(a) que deseas borrar el consejo {{ consejo.Destino }}???
+
+
+    <input type="submit" value="SI">
+
+</form>
+{% endblock %}
