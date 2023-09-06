@@ -30,6 +30,7 @@
             </div>
         </nav>
         <!-- Masthead-->
+        {% block header %}
         <header class="masthead">
             <div class="container position-relative">
                 <div class="row justify-content-center">
@@ -51,30 +52,14 @@
                 </div>
             </div>
         </header>
+        {% endblock %}
         {% block contenido_dinamico %}
         <a class="btn btn-primary" href="{% url 'registro' %}">REGISTRO</a>
         {% endblock %}
         <!-- Icons Grid-->
        
         <!-- Image Showcases-->
-        <section class="showcase">
-            <div class="container-fluid p-0">
-                <div class="row g-0">
-                    <div class="col-lg-6 text-white showcase-img" style="background-image: url('assets/img/bg-showcase-2.jpg')"></div>
-                    <div class="col-lg-6 my-auto showcase-text">
-                        <h2>POR QUE UN BLOG DE VIAJES??</h2>
-                        <p class="lead mb-0">Esta claro que una de las cosas que genera felicidad en la gran mayoria, es la posibilidad de subirse a un avion en busca de experiencia y bienestar, por lo que quiero compartir mi pasion por viajar</p>
-                    </div>
-                </div>
-                <div class="row g-0">
-                    <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/img/bg-showcase-3.jpg')"></div>
-                    <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-                        <h2>INFORMACION IMPORTANTE</h2>
-                        <p class="lead mb-0">En este blog se va a poder encontrar informacion util para aquellos aventureros que tengan ganas de viajar</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+ 
         <!-- Testimonials-->
        
         <!-- Call to Action-->
