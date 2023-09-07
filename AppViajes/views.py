@@ -4,8 +4,11 @@ from django.http import HttpResponse
 from AppViajes.forms import *
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 from django.urls import reverse_lazy
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login,logout, authenticate
+from django.contrib.auth.views import LoginView, PasswordChangeView
 from django.shortcuts import redirect
+from django.contrib.auth.forms import AuthenticationForm
+
 # Create your views here.
 
 def inicio (request):
@@ -121,11 +124,46 @@ class PaginasBorrar(DeleteView):
     template_name = "AppViajes/PaginasBorrar.html"
 
         #LOGIN
+def LoginPagina(request):
+    if request.method == "POST":
+        form = AuthenticationForm(request,data = request.POST)
+        if form.is_valid():
+            usuario = form.cleaned_data.get('username')
+            contraseña = form.cleaned_data.get('password')
+            user = authenticate(username=usuario, password = contraseña)
+            if user is not None:
+                login(request,user)
+                return render(request,"AppViajes/inicio.html",{"mensaje":f"Bienvenido {usuario}"})
+            else:
+                return render(request,"AppViajes/inicio.html",{"mensaje":"Datos invalidos"})
+        else:
+            return render(request,"AppViajes/inicio.html",{"mensaje": "Formulario erroneo"})
+    form = AuthenticationForm()
+    return render (request,"AppViajes/Login.html",{"form": form})
+    
+                
+            
+    
+    
+ 
+        
+        #REGISTRO
 class Registro (FormView):
     template_name = "AppViajes/Registro.html"
     form_class = RegistroUsuarioForm
     redirect_authenticated_user = True
     success_url = reverse_lazy("inicio")
+    
+    def form_valid(self, form):
+        user = form.save()
+        if user is not None:
+            login(self.request, user)
+        return super(Registro, self).form_valid(form)
+
+        
+    
+    
+    
     
     
 

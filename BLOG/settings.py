@@ -128,4 +128,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 
+LOGIN_URL = 'AppViajes/loginpagina/'
+
+
+
+
+
 MEDIA_ROOT = os.path.join (BASE_DIR, 'media')

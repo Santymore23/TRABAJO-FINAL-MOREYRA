@@ -28,5 +28,7 @@ urlpatterns = [
     
     path("registro/", Registro.as_view(), name = "registro"),
     
+    path("loginpagina/",LoginPagina, name = "Login"),
+    
     
 ]

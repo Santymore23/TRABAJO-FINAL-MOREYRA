@@ -10,17 +10,11 @@
 <p>ATRACCION PRINCIPAL: <i>{{destino.Atraccion_principal}}</i></p>
 <p>DESCRIPCION: <i>{{destino.Descripcion}}</i></p>
 {% if destino.Imagen %}
-<center><img src = "{{ destino.Imagen.url }}" style="width: 300px;height:500px;"alt ="imagen"></center>
+<center><img src = "{{ destino.Imagen.url }}" style="width: 500px;height:300px;"alt ="imagen"></center>
 {% else %}
     <p> No hay imagen disponible para este destino</p>
 {% endif %}
 {% endblock %}
 
 
-{% if destino.Imagen %}
-    <img src = "{{ destino.Imagen.url }}" 
-style="width: 300px;height:200px;"
-alt ="imagen">
-{% else %}
-    <p> No hay imagen disponible para este destino</p>
-{% endif %}
+

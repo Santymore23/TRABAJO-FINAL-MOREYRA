@@ -24,16 +24,16 @@ class ContactosForm (forms.Form):
     Email = forms.EmailField(max_length=100)
     Telefono = forms.IntegerField ()
 
-class RegistroUsuarioForm (forms.Form):
-    Username =forms.CharField (max_length=20, label="Ingresar nombre de usuario")
-    Email = forms.EmailField(label="Ingresar email")
-    Password1 = forms.CharField(label="Contraseña",widget=forms.PasswordInput)
-    Password2 = forms.CharField(label=" Reingresar contraseña",widget=forms.PasswordInput)
-    
+class RegistroUsuarioForm(UserCreationForm):
+    Username = forms.CharField(max_length=20, label='Usuario', widget=forms.TextInput(attrs={'class':'form-control'}))
+    Email = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control'}))
+    Password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput(attrs={'class':'form-control'}))
+    Password2 = forms.CharField(label='Reingresar Contraseña', widget=forms.PasswordInput(attrs={'class':'form-control'}))
     class Meta:
         model = User
-        fields = ['Username', 'Email', 'Password1', 'Password2']
-        help_texts ={k:"" for k in fields}
+        fields = ('Email', 'Username', 'Password1', 'Password2')
+        help_texts ={campo: "" for campo in fields}
+        
     
     
     
