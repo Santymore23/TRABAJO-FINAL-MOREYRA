@@ -25,15 +25,16 @@ class ContactosForm (forms.Form):
     Telefono = forms.IntegerField ()
 
 class RegistroUsuarioForm(UserCreationForm):
-    Username = forms.CharField(max_length=20, label='Usuario', widget=forms.TextInput(attrs={'class':'form-control'}))
-    Email = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control'}))
-    Password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput(attrs={'class':'form-control'}))
-    Password2 = forms.CharField(label='Reingresar Contraseña', widget=forms.PasswordInput(attrs={'class':'form-control'}))
+    email = forms.EmailField(widget=forms.EmailInput)
+    username = forms.CharField(max_length=20, label='Usuario', widget=forms.TextInput)
+    password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Repita Contraseña', widget=forms.PasswordInput)
     class Meta:
         model = User
-        fields = ('Email', 'Username', 'Password1', 'Password2')
-        help_texts ={campo: "" for campo in fields}
+        fields = ('email', 'username', 'password1', 'password2')
+        help_texts = {campo: "" for campo in fields}
         
+
     
     
     

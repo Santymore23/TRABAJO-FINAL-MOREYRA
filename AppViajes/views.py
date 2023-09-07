@@ -124,22 +124,11 @@ class PaginasBorrar(DeleteView):
     template_name = "AppViajes/PaginasBorrar.html"
 
         #LOGIN
-def LoginPagina(request):
-    if request.method == "POST":
-        form = AuthenticationForm(request,data = request.POST)
-        if form.is_valid():
-            usuario = form.cleaned_data.get('username')
-            contraseña = form.cleaned_data.get('password')
-            user = authenticate(username=usuario, password = contraseña)
-            if user is not None:
-                login(request,user)
-                return render(request,"AppViajes/inicio.html",{"mensaje":f"Bienvenido {usuario}"})
-            else:
-                return render(request,"AppViajes/inicio.html",{"mensaje":"Datos invalidos"})
-        else:
-            return render(request,"AppViajes/inicio.html",{"mensaje": "Formulario erroneo"})
-    form = AuthenticationForm()
-    return render (request,"AppViajes/Login.html",{"form": form})
+class LoginPagina(LoginView):
+    template_name = 'AppViajes/login.html'
+    fields = '__all__'
+    redirect_autheticated_user = True
+    success_url = reverse_lazy('inicio')
     
                 
             
