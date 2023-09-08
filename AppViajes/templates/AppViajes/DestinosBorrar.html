@@ -6,16 +6,15 @@
 
 
 {% block contenido_dinamico %}
-{% for destino in destino %}
-<h2> {{destino.Destino}} </h2>
+<h3> DESTINOS </h3>
+<form method = "POST"> {% csrf_token %}
     {% if user.is_superuser %}
-    <a href="{% url 'destinos_borrar' %}"></a>
-    {% else %}
-    <a href="{% url 'destinos_list' %}"></a>
-    {% endif %}
-{% endfor %}
+    <h3>Estas Seguro(a) que deseas borrar la pagina {{ destino.Destino }}???</h3>
     <input type="submit" value="SI">
-
+    {% else %}
+    <h3> NO TIENES ACCESO A ESTA PAGINA</h3>
+    <a href="{% url 'destinos_list' %}">VOLVER</a>
+    {% endif %}
 </form>
 {% endblock %}
 
