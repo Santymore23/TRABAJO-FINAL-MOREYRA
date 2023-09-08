@@ -4,13 +4,18 @@
 
 {% block titulo %} FORMULARIO DESTINOS {% endblock %}
 
+
 {% block contenido_dinamico %}
-<h3> DESTINOS </h3>
-<form method = "POST"> {% csrf_token %}
-    Estas Seguro(a) que deseas borrar el destino {{ destino.Destino }}???
-
-
+{% for destino in destino %}
+<h2> {{destino.Destino}} </h2>
+    {% if user.is_superuser %}
+    <a href="{% url 'destinos_borrar' %}"></a>
+    {% else %}
+    <a href="{% url 'destinos_list' %}"></a>
+    {% endif %}
+{% endfor %}
     <input type="submit" value="SI">
 
 </form>
 {% endblock %}
+
