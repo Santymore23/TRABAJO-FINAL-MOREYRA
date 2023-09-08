@@ -1,6 +1,7 @@
-from django.urls import path
+from django.urls import path, include
 from AppViajes.views import *
 from django.contrib.auth.views import LogoutView
+from messenger.urls import messenger__patterns
 
 urlpatterns = [
     path("", inicio, name= "inicio"),
@@ -35,5 +36,10 @@ urlpatterns = [
     
     path("editarPerfil/",EditarUsuario, name = "Editar"),
     
+    path('messenger', include(message_patterns)),
     
+    messenger_patterns = ([
+        path('ThreadList/',ThreadList.as_view(), name = 'thread_list'),
+        path('ThreadDetalle/<pk>', ThreadDetalle.as_view(),name = 'detail'),],'messenger')
+           
 ]

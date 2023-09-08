@@ -1,6 +1,9 @@
+from typing import Any
+from django.db import models
+from django.db.models.query import QuerySet
 from django.shortcuts import render
 from AppViajes.models import *
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from AppViajes.forms import *
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 from django.urls import reverse_lazy
@@ -9,11 +12,16 @@ from django.contrib.auth.views import LoginView, PasswordChangeView
 from django.shortcuts import redirect
 from django.contrib.auth.forms import AuthenticationForm, UserChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def inicio (request):
-    avatar = Avatar.objects.filter(user=request.user.id)[0].Imagen.url
+    avatar = None
+    if request.user.is_authenticated:
+        avatars = Avatar.objects.filter(user=request.user.id)
+        if avatars:
+            avatar = avatars[0].Imagen.url
     return render(request,"AppViajes/inicio.html", {"avatar":avatar})
 
 def Acerca_de_mi (request):
@@ -43,10 +51,6 @@ class DestinoBorrar (LoginRequiredMixin, DeleteView):
     context_object_name = "destino"
     template_name = "AppViajes/DestinosBorrar.html"
     
-    
-
-
-
         #CONSEJOS    
 class ConsejosList(LoginRequiredMixin, ListView):
     context_object_name = "consejo"
@@ -69,12 +73,7 @@ class ConsejosBorrar(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("consejos_list")
     context_object_name = "consejo"
     template_name = "AppViajes/ConsejosBorrar.html"
-    
-    
-    
-    
-    
-    
+      
         #CONTACTOS
 
 class ContactosList(LoginRequiredMixin, ListView):
@@ -98,10 +97,7 @@ class ContactosBorrar(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("contactos_list")
     context_object_name = "contacto"
     template_name = "AppViajes/ContactosBorrar.html"
-    
-    
-    
-    
+       
         #PAGINAS WEB
 class PaginasList(LoginRequiredMixin, ListView):
     context_object_name = "pagina"
@@ -186,8 +182,23 @@ def EditarUsuario(request):
     else:
         form = EditarUsuarioForm(instance=usuario)
         return render (request,"AppViajes/EditarPerfil.html",{"nombreusuario":usuario.username, "form": form})
-            
-            
+     
+        #MENSAJES
+@method_decorator(login_required, name = 'dispatch')
+class ThreadList (ListView):
+    model = Thread
+    def get_queryset(self):
+        queryset = super(ThreadList, self).get_queryset()
+        return queryset.filter(users=self.request.user)
+        
+@method_decorator(login_required, name = 'dispatch')
+class ThreadDetalle (DetailView):
+    model = Thread   
+    def get_object(self):
+        object = super(ThreadDetalle,self).get_object()
+        if self.request.user not in object.users.all():
+            raise Http404
+        return object
             
     
 

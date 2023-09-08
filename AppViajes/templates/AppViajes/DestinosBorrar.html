@@ -2,17 +2,16 @@
 
 {% load static %}
 
-{% block titulo %} FORMULARIO DESTINOS {% endblock %}
+{% block titulo %} BORRAR DESTINOS {% endblock %}
 
 
 {% block contenido_dinamico %}
-<h3> DESTINOS </h3>
 <form method = "POST"> {% csrf_token %}
     {% if user.is_superuser %}
     <h3>Estas Seguro(a) que deseas borrar la pagina {{ destino.Destino }}???</h3>
     <input type="submit" value="SI">
     {% else %}
-    <h3> NO TIENES ACCESO A ESTA PAGINA</h3>
+    <h4>NO TIENES ACCESO A ESTOS DATOS</h4> 
     <a href="{% url 'destinos_list' %}">VOLVER</a>
     {% endif %}
 </form>
