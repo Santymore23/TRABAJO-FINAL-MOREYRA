@@ -5,4 +5,5 @@ admin.site.register(Contactos)
 admin.site.register(Consejos)
 admin.site.register(Destinos)
 admin.site.register(Paginas_web)
+admin.site.register(Avatar)
 

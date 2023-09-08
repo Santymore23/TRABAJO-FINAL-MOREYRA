@@ -21,13 +21,17 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
+                {% if user.is_authenticated %}
                 <a class="navbar-brand" href="{% url 'inicio' %}">VIAJES</a>
                 <a class="btn btn-primary" href="{% url 'consejos_list' %}">CONSEJOS</a>
                 <a class="btn btn-primary" href="{% url 'destinos_list' %}">DESTINOS</a>
                 <a class="btn btn-primary" href="{% url 'contactos_list' %}">CONTACTOS</a>
                 <a class="btn btn-primary" href="{% url 'paginas_list' %}">PAGINAS WEB</a>
                 <a class="btn btn-primary" href="{% url 'Acerca_de_mi' %}">ACERCA DE MI</a>
+                <p>Hola de nuevo, {{request.user.username}} </p>
+                <img src="{{ avatar }}" alt="Avatar" style="width:50px ; height:50px;"
             </div>
+            {% endif %}
         </nav>
         <!-- Masthead-->
         {% block header %}
@@ -54,9 +58,13 @@
         </header>
         {% endblock %}
         {% block contenido_dinamico %}
+        <a class="btn btn-primary" href="{% url 'Login' %}">LOGIN</a>
         <a class="btn btn-primary" href="{% url 'registro' %}">REGISTRO</a>
-        <a class="btn btn-success" href="{% url 'Login' %}">INICIAR SESION</a>
-        {{ mensaje }}
+        <a class="btn btn-primary" href="{% url 'Logout' %}">LOGOUT</a>
+        <a class="btn btn-primary" href="{% url 'Editar' %}">EDITAR USUARIO</a>
+        <br>
+        <br>
+        <h2>{{mensaje}}</h2>
         {% endblock %}
         <!-- Icons Grid-->
        

@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserChangeForm, UserCreationForm, PasswordChangeForm
 from django.contrib.auth.models import User
 
 
@@ -33,6 +33,23 @@ class RegistroUsuarioForm(UserCreationForm):
         model = User
         fields = ('email', 'username', 'password1', 'password2')
         help_texts = {campo: "" for campo in fields}
+
+class EditarUsuarioForm (UserCreationForm):
+    email = forms.EmailField(widget=forms.EmailInput)
+    username = forms.CharField(max_length=20, label='Usuario', widget=forms.TextInput)
+    password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Repita Contraseña', widget=forms.PasswordInput)
+    nombre = forms.CharField(max_length=50, label='Nombre', widget=forms.TextInput)
+    apellido = forms.CharField(max_length=50, label='Apellido', widget=forms.TextInput)
+    class Meta:
+        model = User
+        fields = ('email', 'username', 'password1', 'password2','nombre','apellido')
+        help_texts = {campo: "" for campo in fields}
+
+        
+    
+        
+
         
 
     

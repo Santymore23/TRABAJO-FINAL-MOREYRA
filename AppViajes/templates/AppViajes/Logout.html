@@ -1,0 +1,21 @@
+{% extends 'AppViajes/inicio.html' %}
+
+{% block contenido_dinamico %}
+
+<br>
+
+<div class="container text-center">
+    <h1>SESION CERRADA</h1>
+</div>
+
+<div class="container text-center">
+    <p>Queres <a href="{% url 'Login' %}">iniciar sesión?? </a></p>
+    <br>
+    <p>Queres <a href="{% url 'inicio' %}">volver al inicio??</a></p>
+</div>
+
+<br>
+<br>
+
+
+{% endblock %}

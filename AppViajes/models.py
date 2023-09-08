@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 class Destinos (models.Model):
     Destino = models.CharField(max_length=100)
@@ -32,6 +32,10 @@ class Contactos (models.Model):
     Telefono = models.IntegerField ()
     def __str__(self) -> str:
         return f"{self.Nombre} -- {self.Apellido} -- {self.Email} -- {self.Telefono} "
+
+class Avatar (models.Model):
+    Imagen = models.ImageField(upload_to="avatars")
+    user =models.ForeignKey(User, on_delete=models.CASCADE, null = True, blank= True)
     
     
       
