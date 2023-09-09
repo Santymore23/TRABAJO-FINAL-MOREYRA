@@ -60,6 +60,7 @@ class ConsejosList(LoginRequiredMixin, ListView):
 class ConsejosCrear(LoginRequiredMixin, CreateView):
     model = Consejos
     success_url = reverse_lazy("consejos_list")
+    context_object_name = "consejo"
     fields = ['Destino','Comida','Hoteles', 'Transporte', 'Tips_generales']
     template_name = "AppViajes/ConsejosCrear.html"
 

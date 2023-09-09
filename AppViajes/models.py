@@ -21,7 +21,7 @@ class Consejos (models.Model):
 class Paginas_web (models.Model):
     Pagina = models.CharField (max_length=100)
     Motivo = models.CharField (max_length=1000)
-    Link = models.CharField (max_length=1000, null = True)
+    Link = models.URLField (null = True)
     def __str__(self) -> str:
         return f"{self.Pagina} -- {self.Motivo} -- {self.Link} "
     

@@ -7,10 +7,12 @@
 {% block contenido_dinamico %}
 <h3> CONTACTOS </h3>
 <form method = "POST"> {% csrf_token %}
-    Estas Seguro(a) que deseas borrar el contacto {{ contacto.Nombre }}???
-
-
+    {% if user.is_superuser %}
+    <h3>Estas Seguro(a) que deseas borrar el contacto {{ contacto.Nombre }}???</h3>
     <input type="submit" value="SI">
-
+    {% else %}
+    <h4>NO TIENES ACCESO A ESTOS DATOS</h4> 
+    <a href="{% url 'contactos_list' %}">VOLVER</a>
+    {% endif %}
 </form>
 {% endblock %}

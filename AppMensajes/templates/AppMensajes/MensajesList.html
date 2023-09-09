@@ -3,14 +3,24 @@
 {% load static %}
 
 {% block contenido_dinamico %}
-<h1>MENSAJES RECIBIDOS:</h1>
-<ul>
-{% for mensaje in mensajes %}
-  <li>De: {{ mensaje.usuario.username }} --{{ mensaje.contenido }} -- Enviado: {{ mensaje.fecha }}</li>
+<a class="btn btn-primary" href="{% url 'mensajes_enviar' %}">ENVIAR MENSAJES</a>
+<h2>MENSAJES RECIBIDOS:</h2>
 
+{% for mensaje in mensajes_recibidos %}
+<ul>
+    <li>De: {{ mensaje.usuario.username }} -- {{ mensaje.contenido }} -- Enviado: {{ mensaje.fecha }}</li>
+</ul>
+{% endfor %}
+<hr>
+
+<h2>MENSAJES ENVIADOS:</h2>
+{% for mensaje in mensajes_enviados %}
+<ul>
+    <li>Para: {{ mensaje.receptor.username }} -- {{ mensaje.contenido }} -- Enviado: {{ mensaje.fecha }}</li>
+</ul>
 {% empty %}
-  <li>NO HAY MENSAJES.</li>
+  <li>NO HAY MENSAJES</li>
 {% endfor %}
 </ul>
-<a href="{% url 'mensajes_enviar' %}">Enviar mensaje</a>
+
 {% endblock %}

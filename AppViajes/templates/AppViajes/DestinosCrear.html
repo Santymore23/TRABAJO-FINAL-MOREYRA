@@ -7,12 +7,14 @@
 {% block contenido_dinamico %}
 <h3> DESTINOS </h3>
 <form method = "POST" enctype="multipart/form-data"> {% csrf_token %}
+    {% if user.is_superuser %}
     <table>
     {{ form.as_p }}
     </table>
-
-
     <input type="submit" value="GUARDAR DESTINO">
-
+    {% else %}
+    <h4>NO TIENES ACCESO A ESTOS DATOS</h4> 
+    <a href="{% url 'destinos_list' %}">VOLVER</a>
+    {% endif %}
 </form>
 {% endblock %}

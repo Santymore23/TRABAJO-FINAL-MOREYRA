@@ -10,8 +10,12 @@ from .forms import *
 
 @login_required
 def MensajeMostrar (request):
-    mensajes = Mensaje.objects.filter(receptor = request.user)
-    return render (request, "AppMensajes/MensajesList.html", {"mensajes": mensajes})
+    mensajes_recibidos = Mensaje.objects.filter(receptor = request.user)
+    mensajes_enviados = Mensaje.objects.filter(usuario = request.user)
+    mensajes = list (mensajes_recibidos) + list (mensajes_enviados)
+    mensajes.sort (key=lambda x:x.fecha)
+    return render (request, "AppMensajes/MensajesList.html", {"mensajes_recibidos": mensajes_recibidos, "mensajes_enviados": mensajes_enviados, "mensajes": mensajes})
+
 
 @login_required
 def MensajeEnviar (request):

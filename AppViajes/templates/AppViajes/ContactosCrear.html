@@ -7,12 +7,15 @@
 {% block contenido_dinamico %}
 <h3> CONTACTOS </h3>
 <form method = "POST"> {% csrf_token %}
+    {% if user.is_superuser %}
     <table>
     {{ form.as_p }}
     </table>
-
-
     <input type="submit" value="GUARDAR CONTACTO">
+    {% else %}
+    <h4>NO TIENES ACCESO A ESTOS DATOS</h4> 
+    <a href="{% url 'contactos_list' %}">VOLVER</a>
+    {% endif %}
 
 </form>
 {% endblock %}

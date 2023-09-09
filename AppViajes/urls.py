@@ -35,7 +35,5 @@ urlpatterns = [
     path("logout/",LogoutView.as_view(template_name = "AppViajes/Logout.html"), name = "Logout"),
     
     path("editarPerfil/",EditarUsuario, name = "Editar"),
-    
-    path("AppMensajes/", include ("AppMensajes.urls"))
            
 ]

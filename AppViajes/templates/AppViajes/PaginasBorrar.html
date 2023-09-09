@@ -7,10 +7,12 @@
 {% block contenido_dinamico %}
 <h3> PAGINAS </h3>
 <form method = "POST"> {% csrf_token %}
-    Estas Seguro(a) que deseas borrar la pagina {{ pagina.Pagina }}???
-
-
+    {% if user.is_superuser %}
+    <h3>Estas Seguro(a) que deseas borrar la pagina {{ pagina.Pagina }}???</h3>
     <input type="submit" value="SI">
-
+    {% else %}
+    <h4>NO TIENES ACCESO A ESTOS DATOS</h4> 
+    <a href="{% url 'paginas_list' %}">VOLVER</a>
+    {% endif %}
 </form>
 {% endblock %}

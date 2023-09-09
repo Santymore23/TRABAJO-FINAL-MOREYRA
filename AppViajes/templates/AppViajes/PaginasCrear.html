@@ -4,20 +4,19 @@
 
 {% block titulo %} FORMULARIO PAGINAS {% endblock %}
 
-{% if not user.is_staff %}
-<h1> NO TIENES ACCESO A ESTA PAGINA</h1>
-<a class="btn btn-primary" href="{% url 'paginas_list' %}">VOLVER</a>
-{% endif %}
 
 {% block contenido_dinamico %}
 <h3> PAGINAS </h3>
 <form method = "POST"> {% csrf_token %}
+    {% if user.is_superuser %}
     <table>
     {{ form.as_p }}
     </table>
-
-
     <input type="submit" value="GUARDAR PAGINA">
+    {% else %}
+    <h4>NO TIENES ACCESO A ESTOS DATOS</h4> 
+    <a href="{% url 'paginas_list' %}">VOLVER</a>
+    {% endif %}
 
 </form>
 {% endblock %}
