@@ -36,6 +36,6 @@ urlpatterns = [
     
     path("editarPerfil/",EditarUsuario, name = "Editar"),
     
-
+    path("AppMensajes/", include ("AppMensajes.urls"))
            
 ]

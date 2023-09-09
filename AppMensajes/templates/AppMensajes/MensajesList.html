@@ -1,0 +1,17 @@
+{% extends "AppViajes/inicio.html" %}
+
+{% load static %}
+
+{% block contenido_dinamico %}
+<h1>MENSAJES RECIBIDOS:</h1>
+<ul>
+{% for mensaje in object_list %}
+  <li>De: {{ mensaje.emisor.username }}</li>
+  <li>{{ mensaje.contenido }}</li>
+  <li>Enviado: {{ mensaje.fecha }}</li>
+{% empty %}
+  <li>NO HAY MENSAJES.</li>
+{% endfor %}
+</ul>
+<a href="{% url 'mensajes_enviar' %}">Enviar mensaje</a>
+{% endblock %}
