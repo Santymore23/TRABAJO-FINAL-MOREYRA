@@ -13,7 +13,9 @@
 
         {{ consejo.Destino }}
         <a class="btn btn-info" href="{% url 'consejos_detalles' consejo.id %}">MOSTRAR</a>
+        <a class="btn btn-info" href="{% url 'consejos_editar' consejo.id %}">EDITAR</a>
         <a class="btn btn-danger" href="{% url 'consejos_borrar' consejo.id %}">ELIMINAR</a>
+
 
         
 

@@ -14,6 +14,7 @@
         {{ destino.Destino }}
         <a class="btn btn-info" href="{% url 'destinos_detalles' destino.id %}">MOSTRAR</a>
         <a class="btn btn-danger" href="{% url 'destinos_borrar' destino.id %}">ELIMINAR</a>
+        <a class="btn btn-info" href="{% url 'destinos_editar' destino.id %}">EDITAR</a>
 
 
     </li>

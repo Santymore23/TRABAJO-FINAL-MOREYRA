@@ -50,6 +50,14 @@ class DestinoBorrar (LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("destinos_list")
     context_object_name = "destino"
     template_name = "AppViajes/DestinosBorrar.html"
+
+class DestinoEditar(LoginRequiredMixin, UpdateView):
+    model = Destinos
+    form_class = DestinosEditar
+    success_url = reverse_lazy('destinos_list')
+    context_object_name = 'destino'
+    template_name = "AppViajes/DestinosEditar.html"
+
     
         #CONSEJOS    
 class ConsejosList(LoginRequiredMixin, ListView):
@@ -74,6 +82,14 @@ class ConsejosBorrar(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("consejos_list")
     context_object_name = "consejo"
     template_name = "AppViajes/ConsejosBorrar.html"
+
+class ConsejosEditar(LoginRequiredMixin, UpdateView):
+    model = Consejos
+    form_class = ConsejosEditar
+    success_url = reverse_lazy('consejos_list')
+    context_object_name = 'consejo'
+    template_name = "AppViajes/ConsejosEditar.html" 
+    
       
         #CONTACTOS
 
@@ -98,6 +114,13 @@ class ContactosBorrar(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("contactos_list")
     context_object_name = "contacto"
     template_name = "AppViajes/ContactosBorrar.html"
+
+class ContactosEditar(LoginRequiredMixin, UpdateView):
+    model = Contactos
+    form_class = ContactosEditar
+    success_url = reverse_lazy('contactos_list')
+    context_object_name = 'contacto'
+    template_name = "AppViajes/ContactosEditar.html" 
        
         #PAGINAS WEB
 class PaginasList(LoginRequiredMixin, ListView):
@@ -121,6 +144,13 @@ class PaginasBorrar(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("paginas_list")
     context_object_name = "pagina"
     template_name = "AppViajes/PaginasBorrar.html"
+
+class PaginasEditar(LoginRequiredMixin, UpdateView):
+    model = Paginas_web
+    form_class = PaginasEditar
+    success_url = reverse_lazy('paginas_list')
+    context_object_name = 'pagina'
+    template_name = "AppViajes/PaginasEditar.html" 
 
         #LOGIN
 class LoginPagina(LoginView):

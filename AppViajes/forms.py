@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm, PasswordChangeForm
 from django.contrib.auth.models import User
+from .models import *
 
 
 class DestinosForm (forms.Form):
@@ -23,6 +24,54 @@ class ContactosForm (forms.Form):
     Apellido = forms.CharField (max_length=100)
     Email = forms.EmailField(max_length=100)
     Telefono = forms.IntegerField ()
+
+class DestinosEditar(forms.ModelForm):
+    class Meta:
+        model = Destinos
+        fields = ('Destino', 'Atraccion_principal', 'Descripcion')
+
+        widgets = {
+            'Destino' : forms.TextInput(),
+            'Atraccion_principal' : forms.TextInput(),
+            'Descripcion' : forms.TextInput(),
+                }
+
+class ConsejosEditar (forms.ModelForm):
+    class Meta:
+        model = Consejos
+        fields = ('Destino', 'Comida', 'Hoteles', 'Transporte', 'Tips_generales')
+
+        widgets = {
+            'Destino' : forms.TextInput(),
+            'Comida' : forms.TextInput(),
+            'Hoteles' : forms.TextInput(),
+            'Transporte' : forms.TextInput(),
+            'Tips_generales' : forms.TextInput(),
+            }
+
+class ContactosEditar (forms.ModelForm):
+    class Meta:
+        model = Contactos
+        fields = ('Nombre', 'Apellido', 'Email', 'Telefono')
+
+        widgets = {
+            'Nombre' : forms.TextInput(),
+            'Apellido' : forms.TextInput(),
+            'Email' : forms.EmailInput(),
+            'Telefono' : forms.TextInput(),
+        }
+        
+class PaginasEditar (forms.ModelForm):
+    class Meta:
+        model = Paginas_web
+        fields = ('Pagina', 'Motivo', 'Link')
+
+        widgets = {
+            'Pagina' : forms.TextInput(),
+            'Motivo' : forms.TextInput(),
+            'Link' : forms.TextInput(),
+        }
+
 
 class RegistroUsuarioForm(UserCreationForm):
     email = forms.EmailField(widget=forms.EmailInput)

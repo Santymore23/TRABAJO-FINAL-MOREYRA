@@ -1,0 +1,30 @@
+{% extends 'AppViajes/inicio.html' %}
+
+{% block contenido_dinamico %}
+
+<br>
+<br>
+
+<div class="container">
+
+    <h4>EDITAR PAGINA</h4>
+    
+</div>
+
+<div class="container">
+    <div class="form-group">
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+    {% if user.is_superuser %}
+    <table>
+    {{ form.as_p }}
+    </table>
+    <input type="submit" value="GUARDAR PAGINA">
+    {% else %}
+    <h4>NO TIENES ACCESO A ESTOS DATOS</h4> 
+    <a href="{% url 'paginas_list' %}">VOLVER</a>
+    {% endif %}
+    </div> 
+</form>
+</div>
+<br>
+{% endblock %}

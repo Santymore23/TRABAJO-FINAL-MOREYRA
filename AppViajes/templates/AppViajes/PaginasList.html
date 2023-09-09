@@ -13,6 +13,7 @@
 
         {{ pagina.Pagina }}
         <a class="btn btn-info" href="{% url 'paginas_detalles' pagina.id %}">MOSTRAR</a>
+        <a class="btn btn-info" href="{% url 'paginas_editar' pagina.id %}">EDITAR</a>
         <a class="btn btn-danger" href="{% url 'paginas_borrar' pagina.id %}">ELIMINAR</a>
 
 
