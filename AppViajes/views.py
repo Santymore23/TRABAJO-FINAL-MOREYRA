@@ -183,24 +183,8 @@ def EditarUsuario(request):
         form = EditarUsuarioForm(instance=usuario)
         return render (request,"AppViajes/EditarPerfil.html",{"nombreusuario":usuario.username, "form": form})
      
-        #MENSAJES
-@method_decorator(login_required, name = 'dispatch')
-class ThreadList (ListView):
-    model = Thread
-    def get_queryset(self):
-        queryset = super(ThreadList, self).get_queryset()
-        return queryset.filter(users=self.request.user)
-        
-@method_decorator(login_required, name = 'dispatch')
-class ThreadDetalle (DetailView):
-    model = Thread   
-    def get_object(self):
-        object = super(ThreadDetalle,self).get_object()
-        if self.request.user not in object.users.all():
-            raise Http404
-        return object
-            
     
+
 
 
         

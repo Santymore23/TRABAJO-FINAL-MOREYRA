@@ -37,16 +37,7 @@ class Avatar (models.Model):
     Imagen = models.ImageField(upload_to="avatars")
     user =models.ForeignKey(User, on_delete=models.CASCADE, null = True, blank= True)
 
-class Mensaje (models.Model):
-    usuario = models.ForeignKey(User, on_delete =models.CASCADE)
-    contenido = models.TextField()
-    fecha = models.DateTimeField(auto_now_add= True)
-    class Meta:
-        ordering = ['fecha']
 
-class Thread (models.Model):
-    usuarios = models.ManyToManyField(User, related_name= 'threads')
-    mensaje = models.ManyToManyField(Mensaje)
     
     
       
