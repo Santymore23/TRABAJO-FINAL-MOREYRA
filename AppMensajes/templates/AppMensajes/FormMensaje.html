@@ -1,6 +1,6 @@
 {% extends "AppViajes/inicio.html" %}
 
-{% load static %}
+
 
 {% block titulo %} MENSAJES {% endblock %}
 
@@ -8,7 +8,7 @@
 <h1>ENVIAR MENSAJES:</h1>
 <form action="{% url 'mensajes_enviar' %}" method="POST"> {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Enviar</button>
+    <button type="submit">ENVIAR</button>
     </form>
-    <a href="{% url 'mensajes_enviar' %}">Volver a mensajes</a>
+    <a href="{% url 'mensaje_mostrar' %}">Volver a mensajes</a>
 {% endblock %}

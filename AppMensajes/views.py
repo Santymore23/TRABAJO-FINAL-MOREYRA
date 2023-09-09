@@ -16,17 +16,17 @@ def MensajeMostrar (request):
 @login_required
 def MensajeEnviar (request):
     if request.method == "POST":
+        emisor = request.user
         form = EnviarMensajeForm(request.POST)
+        form.fields ['emisor'].initial = emisor.id
         if form.is_valid():
-            emisor_nombre = form.cleaned_data ['emisor']
             receptor_nombre = form.cleaned_data ['receptor']
-            mensaje_contenido = form.cleaned_data ['contenido']
+            mensaje_contenido = form.cleaned_data ['mensaje']
             try:
-                emisor = User.objects.get (username = emisor_nombre)
                 receptor = User.objects.get (username = receptor_nombre)
                 mensaje = Mensaje(usuario= emisor, receptor = receptor, contenido = mensaje_contenido)
                 mensaje.save()
-                return redirect (MensajeMostrar)
+                return redirect ("mensaje_mostrar")
             except User.DoesNotExist:
                 raise Http404
     else:

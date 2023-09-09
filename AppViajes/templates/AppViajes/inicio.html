@@ -21,7 +21,6 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="btn btn-primary" href="{% url 'Login' %}">LOGIN</a>
                 {% if user.is_authenticated %}
                 <a class="navbar-brand" href="{% url 'inicio' %}">VIAJES</a>
                 <a class="btn btn-primary" href="{% url 'consejos_list' %}">CONSEJOS</a>
@@ -30,8 +29,12 @@
                 <a class="btn btn-primary" href="{% url 'paginas_list' %}">PAGINAS</a>
                 <a class="btn btn-primary" href="{% url 'Acerca_de_mi' %}">ABOUT</a>
                 <a class="btn btn-primary" href="{% url 'registro' %}">REGISTRO</a>
+                <a class="btn btn-primary" href="{% url 'Login' %}">LOGIN</a>
                 <a class="btn btn-primary" href="{% url 'Logout' %}">LOGOUT</a>
                 <a class="btn btn-primary" href="{% url 'Editar' %}">CAMBIAR DATOS</a>
+                <a class="btn btn-primary" href="{% url 'mensajes_enviar' %}">MENSAJES ENVIAR</a>
+                <a class="btn btn-primary" href="{% url 'mensaje_mostrar' %}">MENSAJES RECIBIDOS</a>
+                <br>
                 <p>Hola de nuevo, {{request.user.username}} </p>
                 <img src="{{ avatar }}" alt="Avatar" style="width:50px ; height:50px;"
             </div>
