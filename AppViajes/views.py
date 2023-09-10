@@ -192,6 +192,11 @@ class Registro (FormView):
         return super(Registro, self).form_valid(form)
     
         #PERFIL
+class PerfilesList (LoginRequiredMixin, ListView):
+    context_object_name = "perfiles"
+    queryset = User.objects.all()
+    template_name = "AppViajes/PerfilesList.html"
+
 
 def EditarUsuario(request):
     usuario =request.user

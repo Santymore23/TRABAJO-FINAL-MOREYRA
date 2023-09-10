@@ -1,0 +1,30 @@
+{% extends "AppViajes/inicio.html" %}
+
+{% load static %}
+
+{% block titulo %} USUARIOS {% endblock %}
+
+{% block contenido_dinamico %}
+<h3> USUARIO </h3>
+<ul>
+    {% for perfil in perfiles %}
+    <li>
+
+        {{ perfil.user.username }}
+
+
+
+
+
+    </li>
+
+
+    {% endfor %}
+    <br>
+    <br>
+    <a class="btn btn-success" href="{% url 'paginas_crear' %}">CREAR PAGINA</a>
+
+
+
+</ul>
+{% endblock %}
