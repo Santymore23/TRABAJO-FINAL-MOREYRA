@@ -25,7 +25,7 @@ def MensajeEnviar (request):
         form.fields ['emisor'].initial = emisor.id
         if form.is_valid():
             receptor_nombre = form.cleaned_data ['receptor']
-            mensaje_contenido = form.cleaned_data ['mensaje']
+            mensaje_contenido = form.cleaned_data ['contenido']
             try:
                 receptor = User.objects.get (username = receptor_nombre)
                 mensaje = Mensaje(usuario= emisor, receptor = receptor, contenido = mensaje_contenido)
