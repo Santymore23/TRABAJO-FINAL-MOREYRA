@@ -31,12 +31,13 @@
                 <a class="btn btn-primary" href="{% url 'contactos_list' %}">CONTACTOS</a>
                 <a class="btn btn-primary" href="{% url 'paginas_list' %}">PAGINAS</a>
                 <a class="btn btn-primary" href="{% url 'Acerca_de_mi' %}">ABOUT</a>
+                <a class="btn btn-primary" href="{% url 'perfiles_list' %}">PERFILES</a>
+                <a class="btn btn-primary" href="{% url 'mensaje_mostrar' %}">MENSAJES</a>
                 <a class="btn btn-primary" href="{% url 'registro' %}">REGISTRO</a>
                 <a class="btn btn-primary" href="{% url 'Login' %}">LOGIN</a>
                 <a class="btn btn-primary" href="{% url 'Logout' %}">LOGOUT</a>
-                <a class="btn btn-primary" href="{% url 'perfiles_list' %}">PERFILES</a>
-                <a class="btn btn-primary" href="{% url 'mensaje_mostrar' %}">MENSAJES</a>
                 <p>Hola de nuevo, {{request.user.username}} </p>
+
             </div>
             {% endif %}
         </nav>
