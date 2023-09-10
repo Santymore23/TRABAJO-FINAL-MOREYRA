@@ -2,16 +2,18 @@
 
 {% load static %}
 
+
 {% block titulo %} USUARIOS {% endblock %}
 
 {% block contenido_dinamico %}
-<h3> USUARIO </h3>
+<h3> USUARIOS REGISTRADOS </h3>
 <ul>
     {% for perfil in perfiles %}
     <li>
 
-        {{ perfil.user.username }}
-
+        {{ perfil.username }}
+        <a class="btn btn-danger" href="{% url 'perfiles_borrar' perfil.id %}">ELIMINAR</a>
+        <a class="btn btn-success" href="{% url 'Editar' perfil.id %}">EDITAR DATOS</a>
 
 
 
@@ -20,9 +22,7 @@
 
 
     {% endfor %}
-    <br>
-    <br>
-    <a class="btn btn-success" href="{% url 'paginas_crear' %}">CREAR PAGINA</a>
+    
 
 
 

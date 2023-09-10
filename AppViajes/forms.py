@@ -95,6 +95,11 @@ class EditarUsuarioForm (UserCreationForm):
         fields = ('email', 'username', 'password1', 'password2','nombre','apellido')
         help_texts = {campo: "" for campo in fields}
 
+class AvatarForm(forms.ModelForm):
+    class Meta:
+        model = Avatar
+        fields = ['Imagen']
+
         
     
         

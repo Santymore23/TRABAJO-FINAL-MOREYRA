@@ -1,0 +1,19 @@
+{% extends "AppViajes/inicio.html" %}
+
+{% load static %}
+
+
+{% block titulo %} ELIMINAR USUARIOS {% endblock %}
+
+{% block contenido_dinamico %}
+<h3>  </h3>
+<form method = "POST"> {% csrf_token %}
+    {% if user.id == perfiles.id %}
+    <h3>Estas Seguro(a) que deseas borrar el usuario {{ perfiles.username }}???</h3>
+    <input type="submit" value="SI">
+    {% else %}
+    <h4>NO TIENES ACCESO A ESTOS DATOS</h4> 
+    <a href="{% url 'perfiles_list' %}">VOLVER</a>
+    {% endif %}
+</form>
+{% endblock %}

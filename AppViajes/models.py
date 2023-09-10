@@ -30,12 +30,13 @@ class Contactos (models.Model):
     Apellido = models.CharField (max_length=100)
     Email = models.EmailField(max_length=100)
     Telefono = models.IntegerField ()
+    Imagen = models.ImageField(upload_to='destino_images/', null= True, blank= True)
     def __str__(self) -> str:
         return f"{self.Nombre} -- {self.Apellido} -- {self.Email} -- {self.Telefono} "
 
 class Avatar (models.Model):
     Imagen = models.ImageField(upload_to="avatars")
-    user =models.ForeignKey(User, on_delete=models.CASCADE, null = True, blank= True)
+    user =models.OneToOneField(User, on_delete=models.CASCADE, null = True, blank= True)
 
 
     

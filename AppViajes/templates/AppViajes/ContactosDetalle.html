@@ -10,5 +10,9 @@
 <p>APELLIDO: <i>{{contacto.Apellido}}</i></p>
 <p>MAIL DE CONTACTO: <i>{{contacto.Email}}</i></p>
 <p>TELEFONO: <i>{{contacto.Telefono}}</i></p>
-
+    {% if contacto.Imagen %}
+    <center><img src = "{{ contacto.Imagen.url }}" style="width: 500px;height:500px;"alt ="imagen"></center>
+    {% else %}
+    <p> No hay imagen disponible para este destino</p>
+    {% endif %}
 {% endblock %}

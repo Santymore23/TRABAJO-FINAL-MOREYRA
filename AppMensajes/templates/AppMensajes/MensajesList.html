@@ -10,6 +10,8 @@
 <ul>
     <li>De: {{ mensaje.usuario.username }} -- {{ mensaje.contenido }} -- Enviado: {{ mensaje.fecha }}</li>
 </ul>
+{% empty %}
+  <li>NO HAY MENSAJES</li>
 {% endfor %}
 <hr>
 

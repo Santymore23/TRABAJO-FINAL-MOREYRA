@@ -39,6 +39,7 @@ urlpatterns = [
     path("logout/",LogoutView.as_view(template_name = "AppViajes/Logout.html"), name = "Logout"),
     
     path("perfilesList/",PerfilesList.as_view(), name = "perfiles_list"),
-    path("editarPerfil/",EditarUsuario, name = "Editar"),
-           
+    path("perfilesBorrar/<pk>",PerfilesBorrar.as_view(), name = "perfiles_borrar"),
+    path("editarPerfil/<pk>",EditarUsuario.as_view(), name = "Editar"),
+         
 ]

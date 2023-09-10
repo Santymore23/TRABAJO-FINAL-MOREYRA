@@ -25,7 +25,12 @@ def inicio (request):
     return render(request,"AppViajes/inicio.html", {"avatar":avatar})
 
 def Acerca_de_mi (request):
-    return render (request,"AppViajes/AcercaDeMi.html",{})
+    avatar = None
+    if request.user.is_authenticated:
+        avatars = Avatar.objects.filter(user=request.user.id)
+        if avatars:
+            avatar = avatars[0].Imagen.url
+    return render(request,"AppViajes/AcercaDeMi.html", {"avatar":avatar})
 
 
           #DESTINOS
@@ -101,7 +106,7 @@ class ContactosList(LoginRequiredMixin, ListView):
 class ContactosCrear(LoginRequiredMixin, CreateView):
     model = Contactos
     success_url = reverse_lazy("contactos_list")
-    fields = ['Nombre','Apellido','Email','Telefono']
+    fields = ['Nombre','Apellido','Email','Telefono','Imagen']
     template_name = "AppViajes/ContactosCrear.html"
 
 class ContactosDetalle(LoginRequiredMixin, DetailView):
@@ -197,30 +202,21 @@ class PerfilesList (LoginRequiredMixin, ListView):
     queryset = User.objects.all()
     template_name = "AppViajes/PerfilesList.html"
 
+class PerfilesBorrar(LoginRequiredMixin, DeleteView):
+    model = User
+    success_url = reverse_lazy("perfiles_list")
+    context_object_name = "perfiles"
+    template_name = "AppViajes/PerfilesBorrar.html"
 
-def EditarUsuario(request):
-    usuario =request.user
-    if request.method == "POST":
-        form = EditarUsuarioForm (request.POST)
-        if form.is_valid():
-            info = form.cleaned_data
-            usuario.email = info["email"]
-            usuario.username = info["username"]
-            usuario.password1 = info["password1"]
-            usuario.password2 = info["password2"]
-            usuario.nombre = info["nombre"]
-            usuario.apellido = info["apellido"]
-            usuario.save()
-            mensaje = f" El usuario {usuario.username} ({usuario.nombre} {usuario.apellido}) ha cambiado sus datos"
-            return render (request,"AppViajes/inicio.html", {"mensaje": mensaje})
-        else:
+class EditarUsuario (LoginRequiredMixin, UpdateView):
+    model = User
+    form_class = EditarUsuarioForm
+    success_url = reverse_lazy ("perfiles_list")
+    context_object_name = "perfiles"
+    template_name = "AppViajes/EditarPerfil.html" 
 
-            return render (request,"AppViajes/EditarPerfil.html", {"nombreusuario":usuario.username, "form":form})
-    else:
-        form = EditarUsuarioForm(instance=usuario)
-        return render (request,"AppViajes/EditarPerfil.html",{"nombreusuario":usuario.username, "form": form})
-     
-    
+   
+
 
 
 

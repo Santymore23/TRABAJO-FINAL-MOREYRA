@@ -21,6 +21,9 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
+            {% block avatar %}
+            <img src="{{ request.user.avatar.Imagen.url }}" alt="Avatar" style="width:50px ; height:50px;">
+            {% endblock %} 
                 {% if user.is_authenticated %}
                 <a class="navbar-brand" href="{% url 'inicio' %}">VIAJES</a>
                 <a class="btn btn-primary" href="{% url 'consejos_list' %}">CONSEJOS</a>
@@ -34,7 +37,6 @@
                 <a class="btn btn-primary" href="{% url 'perfiles_list' %}">PERFILES</a>
                 <a class="btn btn-primary" href="{% url 'mensaje_mostrar' %}">MENSAJES</a>
                 <p>Hola de nuevo, {{request.user.username}} </p>
-                <img src="{{ avatar }}" alt="Avatar" style="width:50px ; height:50px;">
             </div>
             {% endif %}
         </nav>
