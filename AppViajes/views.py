@@ -192,6 +192,7 @@ class Registro (FormView):
         return super(Registro, self).form_valid(form)
     
         #PERFIL
+
 def EditarUsuario(request):
     usuario =request.user
     if request.method == "POST":
