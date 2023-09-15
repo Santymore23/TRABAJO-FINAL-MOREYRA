@@ -18,3 +18,4 @@ Crear, editar, eliminar cualquiera de las vistas de las paginas, añadir avatare
 
 # Espero que les guste, les mando un saludo!! 
 # Pd: (Perdon por el video de 11 minutos, sin querer me pase un minuto :) )
+# Por si lo necesitan, el usuario de admin es: Santi23 y la contraseña es: CODERHOUSE
